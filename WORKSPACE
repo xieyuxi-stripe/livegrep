@@ -122,12 +122,6 @@ load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_
 
 hedron_compile_commands_setup()
 
-git_repository(
-    name = "com_google_googletest",
-    commit = "0ea2d8f8fa1601abb9ce713b7414e7b86f90bc61",
-    remote = "https://github.com/google/googletest",
-)
-
 http_archive(
     name = "aspect_rules_js",
     sha256 = "66ecc9f56300dd63fb86f11cfa1e8affcaa42d5300e2746dba08541916e913fd",
