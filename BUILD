@@ -1,4 +1,5 @@
-load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+load("@rules_pkg//pkg:pkg.bzl", "pkg_tar")
+load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@hedron_compile_commands//:refresh_compile_commands.bzl", "refresh_compile_commands")
 
 refresh_compile_commands(
@@ -9,8 +10,6 @@ refresh_compile_commands(
         "//test:codesearch_test",
     ],
 )
-
-load("@bazel_gazelle//:def.bzl", "gazelle")
 
 # gazelle:prefix github.com/livegrep/livegrep
 gazelle(name = "gazelle")
