@@ -90,11 +90,11 @@ http_archive(
     url = "https://github.com/abseil/abseil-cpp/archive/refs/tags/20230802.1.zip",
 )
 
-git_repository(
+http_archive(
     name = "com_github_grpc_grpc",
-    commit = "591d56e1300b6d11948e1b821efac785a295989c",  # 1.44.0
-    remote = "https://github.com/grpc/grpc.git",
-    shallow_since = "1644573434 +0100",
+    sha256 = "de8b433d2a3364ed4a9fc3507d82af0de0696f941a9d389c282be04f1baf9984",
+    strip_prefix = "grpc-1.45.3",
+    url = "https://github.com/grpc/grpc/archive/refs/tags/v1.45.3.tar.gz",
 )
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
