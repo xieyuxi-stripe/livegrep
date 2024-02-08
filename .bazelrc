@@ -9,3 +9,11 @@ common --noenable_bzlmod
 
 # Our version of com_google_protobuf requires this
 common --incompatible_java_common_parameters=false
+
+# Allow CopyFile actions to run locally when "no-remote" tag is set.
+# bazel-skylib will always set no-remote, so this is required.
+build --strategy=CopyFile=remote,sandboxed
+
+# Allow CopyDirectory actions to run locally when "no-remote" tag is set.
+# bazel-skylib will always set no-remote, so this is required.
+build --strategy=CopyDirectory=remote,sandboxed
