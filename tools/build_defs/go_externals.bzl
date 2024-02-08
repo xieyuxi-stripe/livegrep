@@ -34,9 +34,9 @@ def _gopkg(repo, commit):
     )
 
 _externals = [
-    _golang_x("net", "d212a1ef2de2f5d441c327b8f26cf3ea3ea9f265"),
+    _golang_x("net", "73d21fdbb4d7dc7115b50526b93b6c37a4e3377f"),
     _golang_x("text", "a9a820217f98f7c8a207ec1e45a874e1fe12c478"),
-    _golang_x("oauth2", "a6bd8cefa1811bd24b86f8902872e4e8225f74c4"),
+    _golang_x("oauth2", "adffd94437cee5e033b67282039fc9c21708ffc7"),
     _golang_x("sys", "33540a1f603772f9d4b761f416f5c10dade23e96"),
     _golang_x("crypto", "4b2356b1ed79e6be3deca3737a3db3d132d2847a"),
     _golang_x("sync", "0de741cfad7ff3874b219dfbc1b9195b58c7c490"),
