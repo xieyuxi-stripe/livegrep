@@ -47,22 +47,39 @@ http_archive(
     sha256 = "6734a719993b1ba4ebe9806e853864395a8d3968ad27f9dd759c196b3eb3abe8",
     urls = [
         "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.45.1/rules_go-v0.45.1.zip",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.45.1/rules_go-v0.45.1.zip",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.35.0/rules_go-v0.45.1.zip",
     ],
 )
 
-git_repository(
+http_archive(
+    name = "googleapis",
+    sha256 = "9d1a930e767c93c825398b8f8692eca3fe353b9aaadedfbcf1fca2282c85df88",
+    strip_prefix = "googleapis-64926d52febbf298cb82a8f472ade4a3969ba922",
+    urls = [
+        "https://github.com/googleapis/googleapis/archive/64926d52febbf298cb82a8f472ade4a3969ba922.zip",
+    ],
+)
+
+load("@googleapis//:repository_rules.bzl", "switched_rules_by_language")
+
+switched_rules_by_language(
+    name = "com_google_googleapis_imports",
+)
+
+http_archive(
     name = "bazel_gazelle",
-    commit = "3ea1d64d6fe943dac06c341f9a265472bb99acd7",  # 0.24.0
-    remote = "https://github.com/bazelbuild/bazel-gazelle.git",
-    shallow_since = "1633971621 -0400",
+    integrity = "sha256-MpOL2hbmcABjA1R5Bj2dJMYO2o15/Uc5Vj9Q0zHLMgk=",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-gazelle/releases/download/v0.35.0/bazel-gazelle-v0.35.0.tar.gz",
+        "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.35.0/bazel-gazelle-v0.35.0.tar.gz",
+    ],
 )
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.21.6")
+go_register_toolchains(version = "1.19.2")
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
@@ -92,9 +109,9 @@ http_archive(
 
 http_archive(
     name = "com_github_grpc_grpc",
-    sha256 = "437068b8b777d3b339da94d3498f1dc20642ac9bfa76db43abdd522186b1542b",
-    strip_prefix = "grpc-1.60.0",
-    url = "https://github.com/grpc/grpc/archive/refs/tags/v1.60.0.tar.gz",
+    sha256 = "aa1e25461879fa674584a9f5d5aec998845b1dfe5746c16cc16eeba5c1c83abe",
+    strip_prefix = "grpc-1.61.0",
+    url = "https://github.com/grpc/grpc/archive/refs/tags/v1.61.0.tar.gz",
 )
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
@@ -105,36 +122,12 @@ grpc_deps()
 
 # grpc_extra_deps()
 
-http_archive(
-    name = "build_bazel_apple_support",
-    sha256 = "cf4d63f39c7ba9059f70e995bf5fe1019267d3f77379c2028561a5d7645ef67c",
-    urls = [
-        "https://github.com/bazelbuild/apple_support/releases/download/1.11.1/apple_support.1.11.1.tar.gz",
-    ],
-)
-
-http_archive(
-    name = "build_bazel_rules_apple",
-    sha256 = "34c41bfb59cdaea29ac2df5a2fa79e5add609c71bb303b2ebb10985f93fa20e7",
-    urls = [
-        "https://github.com/bazelbuild/rules_apple/releases/download/3.1.1/rules_apple.3.1.1.tar.gz",
-    ],
-)
-
 load("@build_bazel_apple_support//lib:repositories.bzl", "apple_support_dependencies")
 load("@build_bazel_rules_apple//apple:repositories.bzl", "apple_rules_dependencies")
 
 apple_rules_dependencies()
 
 apple_support_dependencies()
-
-load("@com_google_googleapis//:repository_rules.bzl", "switched_rules_by_language")
-
-switched_rules_by_language(
-    name = "com_google_googleapis_imports",
-    cc = True,
-    grpc = True,
-)
 
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
@@ -159,9 +152,9 @@ hedron_compile_commands_setup()
 
 http_archive(
     name = "aspect_rules_js",
-    sha256 = "ab56f5e8b001926bef9a23261ff97e70b82b9cc1117a1e4cdc4231c6b8b43568",
+    sha256 = "630a71aba66c4023a5b16ab3efafaeed8b1a2865ccd168a34611eb73876b3fc4",
     strip_prefix = "rules_js-1.37.1",
-    url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.37.1.tar.gz",
+    url = "https://github.com/aspect-build/rules_js/releases/download/v1.37.1/rules_js-v1.37.1.tar.gz",
 )
 
 load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")

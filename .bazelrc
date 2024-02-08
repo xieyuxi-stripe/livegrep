@@ -6,3 +6,6 @@ build --copt=-DGRPC_BAZEL_BUILD
 build --host_cxxopt=-std=c++14 --cxxopt=-std=c++14
 
 common --noenable_bzlmod
+
+# Our version of com_google_protobuf requires this
+common --incompatible_java_common_parameters=false
